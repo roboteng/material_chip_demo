@@ -29,41 +29,41 @@ class _HomePageState extends State<HomePage> {
         children: <Widget>[
           Semantics(
             label: 'Items',
+            hint: 'test',
             customSemanticsActions: {
               for (int i = 0; i < labels.length; i++)
-                CustomSemanticsAction(
-                        label:
-                            '${labels[i]}${selected == labels[i] ? ', Selected' : ''}'):
-                    () {
+                CustomSemanticsAction(label: '${labels[i]}'): () {
                   setState(() {
                     selected = labels[i];
                   });
                 }
             },
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: labels
-                    .map<Widget>(
-                      (e) => Semantics(
-                        selected: selected == e,
-                        button: true,
-                        child: FlatButton(
-                          key: ValueKey(e),
-                          onPressed: () {
-                            setState(() {
-                              selected = e;
-                            });
-                          },
-                          child: Chip(
-                            label: Text(e),
-                            backgroundColor:
-                                selected == e ? Colors.blue[700] : null,
+            child: ExcludeSemantics(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: labels
+                      .map<Widget>(
+                        (e) => Semantics(
+                          selected: selected == e,
+                          button: true,
+                          child: FlatButton(
+                            key: ValueKey(e),
+                            onPressed: () {
+                              setState(() {
+                                selected = e;
+                              });
+                            },
+                            child: Chip(
+                              label: Text(e),
+                              backgroundColor:
+                                  selected == e ? Colors.blue[700] : null,
+                            ),
                           ),
                         ),
-                      ),
-                    )
-                    .toList(),
+                      )
+                      .toList(),
+                ),
               ),
             ),
           ),
