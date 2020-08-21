@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
         children: <Widget>[
           Semantics(
             label: 'Items',
-            hint: 'test',
+            hint: selected,
             customSemanticsActions: {
               for (int i = 0; i < labels.length; i++)
                 CustomSemanticsAction(label: '${labels[i]}'): () {
@@ -44,21 +44,16 @@ class _HomePageState extends State<HomePage> {
                 child: Row(
                   children: labels
                       .map<Widget>(
-                        (e) => Semantics(
-                          selected: selected == e,
-                          button: true,
-                          child: FlatButton(
-                            key: ValueKey(e),
-                            onPressed: () {
+                        (e) => Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: ChoiceChip(
+                            selected: selected == e,
+                            label: Text(e),
+                            onSelected: (bool select) {
                               setState(() {
                                 selected = e;
                               });
                             },
-                            child: Chip(
-                              label: Text(e),
-                              backgroundColor:
-                                  selected == e ? Colors.blue[700] : null,
-                            ),
                           ),
                         ),
                       )
