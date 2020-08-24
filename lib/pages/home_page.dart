@@ -13,7 +13,16 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    labels = ['All', 'None', 'One', 'Two', 'Lunch', 'Dinner'];
+    labels = [
+      'All',
+      'None',
+      'One',
+      'Two',
+      'Lunch',
+      'Dinner',
+      'Games',
+      'Christmas',
+    ];
     selected = labels[0];
   }
 
@@ -63,6 +72,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           Text('Content content content'),
+          Text('You have selected: $selected'),
         ],
       ),
     );
